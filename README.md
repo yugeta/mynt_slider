@@ -46,7 +46,8 @@ Author : Yugeta.Koji
   > sample : <div class="mynt-slider auto-scroll" data-auto-scroll-time="1000">
 
 
-
+# Demo
+- https://yugeta.github.io/mynt_slider/sample/
 
 
 # Conditions : 条件
