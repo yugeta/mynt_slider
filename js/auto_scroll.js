@@ -8,7 +8,7 @@ export class AutoScroll{
   constructor(asset, step){
     this.asset = asset
     this.step  = step
-    // this.set_autoscroll()
+    this.set_autoscroll()
   }
   
   auto_scroll_time  = 5000
@@ -35,7 +35,7 @@ export class AutoScroll{
       this.update_auto_scroll()
       return
     }
-
+// console.log(123)
     this.step.click_next()
     this.update_auto_scroll()
   }

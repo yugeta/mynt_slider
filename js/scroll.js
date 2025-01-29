@@ -20,6 +20,7 @@ export class Scroll{
 
   scroll_end(){
     if(this.asset.item_root.scroll_flg || this.asset.item_root.step_flg){return}
+    if(!this.check_item_center_position()){return}
     this.asset.item_root.scroll_flg = true
 
     // next
@@ -111,5 +112,13 @@ export class Scroll{
       }
     }
     return null
+  }
+
+  check_item_center_position(){
+    const item   = this.get_center_item()
+    if(!item){return}
+    const area_center   = this.asset.item_root.scrollLeft + this.asset.item_root.offsetWidth / 2
+    const item_center = item.offsetLeft + item.offsetWidth / 2
+    return Math.abs(area_center - item_center) < 5 ? true : false
   }
 }

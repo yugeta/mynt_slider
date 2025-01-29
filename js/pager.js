@@ -101,7 +101,6 @@ export class Pager{
   search_left(index){
     const active_elm = this.asset.active
     const items      = this.asset.items
-    console.log(items.length)
     let flg = 0
     for(let i=items.length-1; i>=0; i--){
       if(items[i] === active_elm){flg++}
