@@ -1,0 +1,26 @@
+.mynt-slider .slider{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.mynt-slider .slider{
+  scroll-snap-type: x mandatory;
+}
+.mynt-slider .slider::-webkit-scrollbar{
+  display: none;
+}
+
+.mynt-slider .slider > *{
+  scroll-snap-align : center;
+  scroll-snap-stop  : always;
+}
+
+.mynt-slider .slider::before,
+.mynt-slider .slider::after{
+  content:"";
+  display:block;
+  width:30%;
+  min-width:30%;
+  height:100%;
+  background-color:transparent;
+}
