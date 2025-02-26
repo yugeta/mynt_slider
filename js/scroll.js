@@ -11,11 +11,15 @@ export class Scroll{
     }
   }
 
+  scroll_wait_time = 30
+
   scroll(){
     this.center_item_pager()
     if(this.asset.item_root.scroll_flg || this.asset.item_root.step_flg){return}
+    this.asset.root.setAttribute("data-scroll-flg" , true)
+    
     if(this.scroll_end_timer){clearTimeout(this.scroll_end_timer)}
-    this.scroll_end_timer = setTimeout(this.scroll_end.bind(this), 100)
+    this.scroll_end_timer = setTimeout(this.scroll_end.bind(this), this.scroll_wait_time)
   }
 
   scroll_end(){
@@ -65,6 +69,7 @@ export class Scroll{
   }
 
   scroll_finish(){
+    this.asset.root.removeAttribute("data-scroll-flg")
     this.asset.item_root.scroll_flg = false
   }
 

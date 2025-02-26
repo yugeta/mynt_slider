@@ -9,6 +9,8 @@ export class Slider{
   copy_elements(){
     const limit_width = this.asset.item_root.offsetWidth * 2
 
+    let last_add=0,first_add=0
+    
     // last add
     const active_right = this.asset.active.offsetLeft + this.asset.active.offsetWidth
     let last_elm     = this.asset.item_root.lastElementChild
@@ -16,6 +18,7 @@ export class Slider{
     while(last_elm.offsetLeft - active_right < limit_width){
       last_elm  = this.copy_last()
       last_left = last_elm.offsetLeft
+      last_add++
     }
 
     // first add
@@ -24,7 +27,9 @@ export class Slider{
     while(this.asset.active.offsetLeft - first_right < limit_width){
       first_elm  = this.copy_first()
       first_right = first_elm.offsetLeft + first_elm.offsetWidth
+      first_add++
     }
+    console.log("last_add:",last_add," / first_add:",first_add)
   }
 
   copy_last(){

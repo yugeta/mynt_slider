@@ -1,8 +1,8 @@
 .mynt-slider{
   position:relative;
-  width:300px;
+  width:90%;
   height:200px;
-  border:1px solid black;
+  border:2px solid black;
   overflow:hidden;
   margin:0 auto;
 }
@@ -116,4 +116,13 @@
 }
 .mynt-slider .pager > *.active{
   background-color:#ed07d6;
+}
+
+
+/**
+ * Debug
+ */
+
+.mynt-slider[data-scroll-flg="true"]{
+  border-color:red!important;
 }

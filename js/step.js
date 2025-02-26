@@ -46,33 +46,35 @@ export class Step{
     this.asset.item_root.step_flg = true
     const old_active  = this.asset.active
     const next_active = this.asset.active.nextElementSibling
-    const active_left = this.asset.active.offsetLeft
+    const active_left = old_active.offsetLeft
     const next_left   = next_active.offsetLeft
+// console.log(old_active,next_active)
+// console.log(this.asset)
 
     this.set_active_center(next_active)
-// console.log(this.asset.active, next_active)
+
     // node copy
     new Slider(this.asset)
     new Pager(this.asset, next_active.getAttribute("data-index"))
 
     // スクロール誤差調整
-    this.asset.item_root.scrollLeft = old_active.offsetLeft + (this.asset.item_root.offsetWidth / 2 - old_active.offsetWidth / 2)
-    // this.asset.item_root.scrollLeft = (next_active.offsetLeft + next_active.offsetWidth / 2) - (this.asset.item_root.scrollLeft + this.asset.item_root.offsetWidth / 2)
+    const old_pos = old_active.offsetLeft
+    const new_pos = this.asset.item_root.offsetWidth / 2 - old_active.offsetWidth / 2
+    const diff = old_pos + new_pos
+    console.log(old_pos, new_pos, diff)
+    this.asset.item_root.scrollLeft = diff
 
     this.asset.item_root.scrollTo({
       left     : this.asset.item_root.scrollLeft + (next_left - active_left),
       behavior : "smooth",
     })
 
-    // requestAnimationFrame(this.scroll_finish.bind(this))
     setTimeout(this.scroll_finish.bind(this), this.flg_time)
   }
 
 
   set_active_center(new_active){
-    const old_active = this.asset.active
-    old_active.classList.remove("active")
-    // const new_active = this.get_center_item() || new_elm
+    this.asset.active.classList.remove("active")
     new_active.classList.add("active")
   }
 

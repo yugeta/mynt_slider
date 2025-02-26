@@ -2,8 +2,6 @@
  * Auto scroll
  */
 
-
-
 export class AutoScroll{
   constructor(asset, step){
     this.asset = asset
@@ -18,7 +16,6 @@ export class AutoScroll{
     if(!this.asset.root.classList.contains("auto-scroll")){return}
     if(this.asset.root.hasAttribute("data-auto-scroll-time")){
       this.auto_scroll_time = Number(this.asset.root.getAttribute("data-auto-scroll-time") || this.auto_scroll_time)
-      // console.log(this.auto_scroll_time)
     }
     this.update_auto_scroll()
   }
@@ -35,7 +32,6 @@ export class AutoScroll{
       this.update_auto_scroll()
       return
     }
-// console.log(123)
     this.step.click_next()
     this.update_auto_scroll()
   }
@@ -43,6 +39,6 @@ export class AutoScroll{
   check_item_center_position(){
     const area_center   = this.asset.item_root.scrollLeft + this.asset.item_root.offsetWidth / 2
     const active_center = this.asset.active.offsetLeft + this.asset.active.offsetWidth / 2
-    return Math.abs(area_center - active_center) < 5 ? true : false
+    return Math.abs(area_center - active_center) < 3 ? true : false
   }
 }
