@@ -1,47 +1,35 @@
 /**
  * MYNT Slider
- * # DOM
- * .mynt-slider
- * ├ .slider
- * │  └ items
- * ├ .pager
- * │  └ items
- * ├ .prev
- * └ .next
+ * - お手軽カルーセルライブラリ
  */
 
-import { Setting }    from "./setting.js"
-import { AutoScroll } from "./auto_scroll.js"
+import { Asset }                   from "./lib/asset.js"
+import { Construct as Lib }        from "./lib/construct.js"
+import { Construct as Slider }     from "./slider/construct.js"
+import { Construct as Scroll }     from "./scroll/construct.js"
+import { Construct as Pager }      from "./pager/construct.js"
+import { Construct as Step }       from "./step/construct.js"
+import { Construct as AutoScroll } from "./auto/construct.js"
 
 class Main{
   constructor(){
-    this.set_css()
+    new Lib().promise.then(()=>{
+      this.init()
+    })
   }
 
-  get mynt_slider_elements(){
-    return document.querySelectorAll(`.mynt-slider`)
-  }
+  init(){
+    const sliders = Asset.mynt_slider_elements
+    if(!sliders || !sliders.length){return}
 
-  set_css(){
-    if(document.querySelector(`link[class="mynt-slider-css"]`)){
-      this.settings()
-    }
-    else{
-      const link = document.createElement("link")
-      link.classList.add("mynt-slider-css")
-      link.rel = "stylesheet"
-      const href = import.meta.url.split("/").slice(0,-2).join("/") + "/css/style.css"
-      link.href = href
-      link.onload = this.settings.bind(this)
-      document.querySelector(`head`).appendChild(link)
-    }
-  }
-
-  settings(){
-    const elms = this.mynt_slider_elements
-    if(!elms.length){return}
-    for(const elm of elms){
-      new Setting(elm)
+    for(const slider of sliders){
+      const item_root = slider.querySelector(Asset.item_root_selector)
+      if(!item_root){continue}
+      new Slider(slider, item_root)
+      new Scroll(item_root)
+      new Pager(slider, item_root)
+      new Step(slider)
+      new AutoScroll(slider)
     }
   }
 }

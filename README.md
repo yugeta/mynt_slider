@@ -28,7 +28,7 @@ Author : Yugeta.Koji
 # Usage : 使用方法
 - 下記のDOM構造で、slider内を横スクロールさせることができる。
 ```
-# DOM
+# DOM structure
 .mynt-slider
 ├ .slider
 │  └ items

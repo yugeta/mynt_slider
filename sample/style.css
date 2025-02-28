@@ -1,8 +1,18 @@
+@import "debug.css";
+
+*, *:before, *:after {
+  -webkit-box-sizing  : border-box;
+     -moz-box-sizing  : border-box;
+       -o-box-sizing  : border-box;
+      -ms-box-sizing  : border-box;
+          box-sizing  : border-box;
+}
+
 .mynt-slider{
   position:relative;
-  width:300px;
+  width:90%;
   height:200px;
-  border:1px solid black;
+  border:2px solid black;
   overflow:hidden;
   margin:0 auto;
 }
@@ -48,13 +58,16 @@
  * Slider items
  */
 .mynt-slider .slider > .red{
-  background-color:red;
+  background-color:#F88;
 }
 .mynt-slider .slider > .orange{
   background-color:orange;
 }
 .mynt-slider .slider > .yellow{
   background-color:yellow;
+}
+.mynt-slider .slider > .gray{
+  background-color:#CCC;
 }
 
 /**

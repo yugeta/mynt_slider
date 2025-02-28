@@ -1,11 +1,17 @@
 .mynt-slider .slider{
   -ms-overflow-style: none;
   scrollbar-width: none;
+  overflow:scroll;
+  /* display:block;
+  white-space:nowrap; */
+  /* will-change: transform; */
 }
 
 .mynt-slider .slider{
   scroll-snap-type: x mandatory;
+  /* scroll-behavior:smooth; */
 }
+
 .mynt-slider .slider::-webkit-scrollbar{
   display: none;
 }
@@ -13,14 +19,26 @@
 .mynt-slider .slider > *{
   scroll-snap-align : center;
   scroll-snap-stop  : always;
+
+  /* display:inline-block; */
 }
 
 .mynt-slider .slider::before,
 .mynt-slider .slider::after{
   content:"";
   display:block;
-  width:30%;
+  width:50%;
   min-width:30%;
   height:100%;
   background-color:transparent;
+}
+
+/* .mynr-slider[data-scroll="true"]{
+  border-color:red!important;
+  pointer-events:none;
+} */
+
+.mynt-slider .slider[data-scrolling]{
+  scroll-snap-type: none;
+  pointer-events:none;
 }

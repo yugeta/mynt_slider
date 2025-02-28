@@ -1,0 +1,18 @@
+/**
+ * Debug
+ */
+
+.mynt-slider[data-scroll-flg="true"]{
+  border-color:red!important;
+}
+
+.mynt-slider .slider > *{
+  border:4px solid transparent;
+}
+.mynt-slider .slider > *.active{
+  border:4px dashed red;
+}
+
+.mynt-slider .slider[data-scrolling]{
+  border:1px dashed #F888;
+}
