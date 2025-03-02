@@ -6,7 +6,7 @@ export class Move{
     const target_center = target_item.offsetLeft + target_item.offsetWidth / 2
     this.scroll_value  = target_center - item_root.offsetWidth / 2
 
-    this.item_root.setAttribute("data-scrolling" , "true")
+    this.item_root.setAttribute("data-scrolling-moving" , "true")
     this.animateScroll()
   }
   scroll_wait_time = 50
@@ -25,8 +25,8 @@ export class Move{
   }
 
   finish(){
-    if(this.item_root.hasAttribute("data-scrolling")){
-      this.item_root.removeAttribute("data-scrolling")
+    if(this.item_root.hasAttribute("data-scrolling-moving")){
+      this.item_root.removeAttribute("data-scrolling-moving")
     }
   }
 

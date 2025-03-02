@@ -9,7 +9,7 @@
 
 .mynt-slider .slider{
   scroll-snap-type: x mandatory;
-  /* scroll-behavior:smooth; */
+  /* scroll-snap-type: x proximity; */
 }
 
 .mynt-slider .slider::-webkit-scrollbar{
@@ -38,7 +38,7 @@
   pointer-events:none;
 } */
 
-.mynt-slider .slider[data-scrolling]{
+.mynt-slider .slider[data-scrolling-moving="true"]{
   scroll-snap-type: none;
   pointer-events:none;
 }

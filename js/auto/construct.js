@@ -25,32 +25,23 @@ export class Construct{
   init(){
     if(!this.slider_root.hasAttribute("data-auto-scroll-time")){return}
     this.auto_scroll_time = Number(this.slider_root.getAttribute("data-auto-scroll-time") || this.auto_scroll_time)
-    // this.item_root.addEventListener("scroll" , this.scrolling.bind(this))
+    this.item_root.addEventListener("scroll" , this.scrolling.bind(this), { passive: true })
     this.update_auto_scroll()
-    // this.auto_scroll_timer = setTimeout(this.move_auto_scroll.bind(this), this.auto_scroll_time)
   }
 
   update_auto_scroll(){
-    // if(this.item_root.hasAttribute("data-scrolling")){clearTimeout(this.auto_scroll_timer)}
     this.auto_scroll_timer = setTimeout(this.move_auto_scroll.bind(this), this.auto_scroll_time)
   }
 
   move_auto_scroll(){
-    if(!this.item_root.hasAttribute("data-hand-scrolling")){
-      // clearTimeout(this.auto_scroll_timer)
-
-      // return
+    if(!this.item_root.hasAttribute("data-scrolling")){
       this.next_button.click()
     }
-    // this.next_button.click()
     this.update_auto_scroll()
   }
 
-  scrolling(){//console.log("scrolling", this.item_root.hasAttribute("data-hand-scrolling"))
-    // if(this.item_root.hasAttribute("data-hand-scrolling")){
-      clearTimeout(this.auto_scroll_timer)
-    // }
+  scrolling(e){
+    clearTimeout(this.auto_scroll_timer)
     this.update_auto_scroll()
-    // this.scroll_end_timer = setTimeout((()=> this.update_auto_scroll.bind(this)), this.auto_scroll_time)
   }
 }

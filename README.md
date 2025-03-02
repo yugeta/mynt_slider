@@ -39,16 +39,19 @@ Author : Yugeta.Koji
 ```
 
 - auto-scroll設定
-  - .mynt-slider要素に、.auto-scrollをセットすることで設置完了
-  - .mynt-slider要素に、data-auto-scroll-time（属性）をセットすることで、自動スクロール時間が設定できる。
+  - .mynt-slider要素に、data-auto-scroll-time（属性）をセットすることで、自動スクロール時間が設定できる。（オートにしない場合は属性を削除）
     - 単位 : ms
     - デフォルト値 : 5000
-  > sample : <div class="mynt-slider auto-scroll" data-auto-scroll-time="1000">
+  > sample : <div class="mynt-slider" data-auto-scroll-time="1000">
 
 
 # Demo
 - https://yugeta.github.io/mynt_slider/sample/
 
+
+# Update
+- 2025-02-28 : Refactoring
+  - 構造は同じ条件で、モジュール群のリファクタリングを実施。
 
 # Conditions : 条件
 

@@ -29,7 +29,9 @@ export class ItemAdjust{
     }
 
     new ActiveCenter(item_root) // activeのズレを修正
-    item_root.removeAttribute("data-scrolling")
+    if(item_root.hasAttribute("data-scrolling")){
+      item_root.removeAttribute("data-scrolling")
+    }
   }
 
   get items(){
