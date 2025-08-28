@@ -23,7 +23,7 @@ export class Construct{
   }
 
   init(){
-    if(!this.slider_root.hasAttribute("data-auto-scroll-time")){return}
+    if(!this.slider_root.classList.contain("auto-scroll") || !this.slider_root.hasAttribute("data-auto-scroll-time")){return}
     this.auto_scroll_time = Number(this.slider_root.getAttribute("data-auto-scroll-time") || this.auto_scroll_time)
     this.item_root.addEventListener("scroll" , this.scrolling.bind(this), { passive: true })
     this.update_auto_scroll()
