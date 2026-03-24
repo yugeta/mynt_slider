@@ -44,6 +44,20 @@ Author : Yugeta.Koji
     - デフォルト値 : 5000
   > sample : <div class="mynt-slider" data-auto-scroll-time="1000">
 
+- continuous-scroll設定（マーキー型連続スクロール）
+  - .mynt-slider要素に`continuous-scroll`クラスを付与すると、一定速度で流れ続けるマーキー型スクロールになる。
+  - auto-scrollとは排他（両方指定した場合はcontinuous-scrollが優先）。
+  - continuous-scroll中は、手動スクロール・ボタン・ページャーは無効化される。
+  - data-scroll-speed属性でスクロール速度を指定できる。
+    - 単位 : px/秒
+    - デフォルト値 : 50
+  > sample : <div class="mynt-slider continuous-scroll" data-scroll-speed="100">
+
+  - CSS注意点
+    - .mynt-slider（親要素）に`overflow: hidden`を必ず設定すること。（translateXで移動するため、親でクリップが必要）
+    - .slider内のアイテムには固定幅（width, min-width）を設定すること。（可変幅だとバッファ計算が不安定になる）
+    - .sliderに`display: flex`を設定すること。（アイテムを横並びにするため）
+
 
 # Demo
 - https://yugeta.github.io/mynt_slider/sample/

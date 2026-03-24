@@ -20,10 +20,16 @@ export class Scroll{
     this.prev_active      = null
     this.viewport_width   = slider_root.offsetWidth // 親要素の幅をviewportとして使用
 
-    // 初期offsetをscrollLeft（ActiveCenterが設定した値）から引き継ぐ
-    this.offset           = item_root.scrollLeft
+    // 初期offsetをactiveアイテムの位置から計算
+    // （::before/::afterが消えた後のレイアウトで、activeが中央に来るoffsetを算出）
+    const active_item = item_root.querySelector(":scope > .active")
+    if(active_item){
+      this.offset = active_item.offsetLeft + active_item.offsetWidth / 2 - this.viewport_width / 2
+    } else {
+      this.offset = 0
+    }
 
-    // scrollLeftを使わないのでscrollLeftをリセット
+    // scrollLeftをリセット
     item_root.scrollLeft  = 0
 
     this.on_resize = this.handle_resize.bind(this)
