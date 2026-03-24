@@ -42,3 +42,25 @@
   scroll-snap-type: none;
   pointer-events:none;
 }
+
+.mynt-slider.continuous-scroll .slider{
+  scroll-snap-type: none;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.mynt-slider.continuous-scroll .slider > *{
+  scroll-snap-align: none;
+  scroll-snap-stop: normal;
+}
+
+.mynt-slider.continuous-scroll .slider::before,
+.mynt-slider.continuous-scroll .slider::after{
+  display: none;
+}
+
+.mynt-slider.continuous-scroll .prev,
+.mynt-slider.continuous-scroll .next,
+.mynt-slider.continuous-scroll .pager{
+  pointer-events: none;
+}

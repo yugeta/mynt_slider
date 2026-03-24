@@ -9,7 +9,8 @@ import { Construct as Slider }     from "./slider/construct.js"
 import { Construct as Scroll }     from "./scroll/construct.js"
 import { Construct as Pager }      from "./pager/construct.js"
 import { Construct as Step }       from "./step/construct.js"
-import { Construct as AutoScroll } from "./auto/construct.js"
+import { Construct as AutoScroll }      from "./auto/construct.js"
+import { Construct as ContinuousScroll } from "./continuous/construct.js"
 
 class Main{
   constructor(){
@@ -26,10 +27,15 @@ class Main{
       const item_root = slider.querySelector(Asset.item_root_selector)
       if(!item_root){continue}
       new Slider(slider, item_root)
-      new Scroll(item_root)
-      new Pager(slider, item_root)
-      new Step(slider)
-      new AutoScroll(slider)
+
+      if(slider.classList.contains("continuous-scroll")){
+        new ContinuousScroll(slider, item_root)
+      } else {
+        new Scroll(item_root)
+        new Pager(slider, item_root)
+        new Step(slider)
+        new AutoScroll(slider)
+      }
     }
   }
 }
