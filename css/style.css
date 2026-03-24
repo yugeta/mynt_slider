@@ -46,7 +46,8 @@
 .mynt-slider.continuous-scroll .slider{
   scroll-snap-type: none;
   pointer-events: none;
-  overflow: hidden;
+  overflow: visible;
+  width: max-content;
 }
 
 .mynt-slider.continuous-scroll .slider > *{

@@ -18,13 +18,19 @@ export class Scroll{
     this.last_time        = 0
     this.raf_id           = null
     this.prev_active      = null
-    this.offset           = 0 // 累積移動量（px）
+    this.viewport_width   = slider_root.offsetWidth // 親要素の幅をviewportとして使用
 
-    // scrollLeftを使わないのでoverflow:hiddenに切り替え
-    item_root.style.overflow = "hidden"
+    // 初期offsetをscrollLeft（ActiveCenterが設定した値）から引き継ぐ
+    this.offset           = item_root.scrollLeft
+
+    // scrollLeftを使わないのでscrollLeftをリセット
+    item_root.scrollLeft  = 0
 
     this.on_resize = this.handle_resize.bind(this)
     window.addEventListener("resize", this.on_resize)
+
+    // 初期バッファ確保（右端が見切れないように）
+    this.append_items_if_needed()
 
     this.raf_id = requestAnimationFrame(this.tick.bind(this))
   }
@@ -95,11 +101,9 @@ export class Scroll{
   // --- 末尾アイテム追加 ---
 
   append_items_if_needed(){
-    // 全アイテムの合計幅（gap含む）がoffset + viewport*2を下回ったら追加
-    const viewport = this.item_root.offsetWidth
-    const total_width = this.get_total_content_width()
+    const viewport = this.viewport_width
 
-    while(total_width < 0 || this.offset + viewport * 2 > this.get_total_content_width()){
+    while(this.offset + viewport * 2 > this.get_total_content_width()){
       const index    = this.original_indexes[this.append_index]
       const original = this.item_root.querySelector(`:scope > *[data-index="${index}"]`)
       if(!original){break}
@@ -160,8 +164,7 @@ export class Scroll{
   // --- active切替 ---
 
   update_active(){
-    // 画面中央の座標（offset基準）
-    const center_pos = this.offset + this.item_root.offsetWidth / 2
+    const center_pos = this.offset + this.viewport_width / 2
     const items      = this.item_root.children
     let new_active   = null
 
@@ -175,22 +178,22 @@ export class Scroll{
     }
 
     if(!new_active){return}
+    if(new_active === this.prev_active){return}
 
-    if(this.prev_active && this.prev_active !== new_active){
-      this.prev_active.classList.remove("active")
+    // 全アイテムからactiveを除去
+    const actives = this.item_root.querySelectorAll(":scope > .active")
+    for(const el of actives){
+      el.classList.remove("active")
     }
 
-    if(!new_active.classList.contains("active")){
-      new_active.classList.add("active")
-    }
-
+    new_active.classList.add("active")
     this.prev_active = new_active
   }
 
   // --- resizeイベント ---
 
   handle_resize(){
-    // resizeで不足分を追加
+    this.viewport_width = this.slider_root.offsetWidth
     this.append_items_if_needed()
   }
 }
